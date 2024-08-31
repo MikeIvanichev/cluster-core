@@ -10,3 +10,7 @@ spec:
     path: apps
   destination:
     name: in-cluster
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - ApplyOutOfSyncOnly=true
