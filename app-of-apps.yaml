@@ -6,7 +6,7 @@ spec:
   project: default
   source:
     repourl: "https://github.com/mikeivanichev/cluster-core"
-    targetrevision: head
+    targetrevision: HEAD
     path: .
   destination:
-    server: "https://kubernetes.default.svc"
+    name: in-cluster
