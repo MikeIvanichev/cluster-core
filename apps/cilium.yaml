@@ -51,6 +51,12 @@ spec:
         - /data/ca.crt
         - /data/tls.crt
         - /data/tls.key
+    - group: ""
+      kind: Secret
+      name: cilium-ca
+      jsonPointers:
+        - /data/ca.crt
+        - /data/ca.key
   destination:
     name: in-cluster
     namespace: kube-system
