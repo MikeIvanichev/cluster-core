@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cilium
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://helm.cilium.io/
+    chart: cilium
+    targetRevision: "v1.16.1"
+    helm:
+      valueFiles:
+        - app-definitions/cilium/values.yaml
+      parameters:
+        - name: installCRDs
+          value: "true"
+  destination:
+    name: in-cluster
+    namespace: kube-system
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - ApplyOutOfSyncOnly=true
+      - CreateNamespace=true
