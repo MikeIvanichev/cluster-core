@@ -7,7 +7,7 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-  source:
+  sources:
     - repoURL: https://helm.cilium.io/
       chart: cilium
       targetRevision: "v1.16.1"
@@ -17,7 +17,7 @@ spec:
         parameters:
           - name: installCRDs
             value: "true"
-    - repoURL: https://github.com/MikeIvanichev/cluster-core
+    - repoURL: https://github.com/MikeIvanichev/cluster-core/
       targetRevision: HEAD
       path: app-definitions/cilium
   destination:
