@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: "https://github.com/MikeIvanichev/cluster-core"
     targetRevision: HEAD
-    path: app-definitions/argocd
+    path: app-definitions/argocd/
   destination:
     name: in-cluster
     namespace: argocd
