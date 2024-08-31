@@ -9,7 +9,7 @@ spec:
   project: default
   sources:
     - repoURL: "https://github.com/MikeIvanichev/cluster-core.git"
-      ref: values
+      ref: cilium-values
       targetRevision: HEAD
       path: app-definitions/cilium/
     - repoURL: "https://helm.cilium.io/"
@@ -17,7 +17,7 @@ spec:
       targetRevision: "v1.16.1"
       helm:
         valueFiles:
-          - \$values/values.yaml
+          - $cilium-values/values.yaml
         parameters:
           - name: installCRDs
             value: "true"
