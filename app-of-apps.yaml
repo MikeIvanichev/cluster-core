@@ -8,7 +8,5 @@ spec:
     repourl: "https://github.com/mikeivanichev/cluster-core"
     targetrevision: HEAD
     path: apps
-    directory:
-      recurse: true
   destination:
     name: in-cluster
