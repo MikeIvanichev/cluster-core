@@ -8,18 +8,19 @@ metadata:
 spec:
   project: default
   sources:
+    - repoURL: https://github.com/MikeIvanichev/cluster-core/
+      ref: values
+      targetRevision: HEAD
+      path: app-definitions/cilium/values.yaml
     - repoURL: https://helm.cilium.io/
       chart: cilium
       targetRevision: "v1.16.1"
       helm:
         valueFiles:
-          - $values/values.yaml
+          - $values
         parameters:
           - name: installCRDs
             value: "true"
-    - repoURL: https://github.com/MikeIvanichev/cluster-core/
-      targetRevision: HEAD
-      path: app-definitions/cilium
   destination:
     name: in-cluster
     namespace: kube-system
