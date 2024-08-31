@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   sources:
-    - repoURL: https://github.com/MikeIvanichev/cluster-core/
+    - repoURL: https://github.com/MikeIvanichev/cluster-core.git
       ref: values
       targetRevision: HEAD
       path: app-definitions/cilium/
