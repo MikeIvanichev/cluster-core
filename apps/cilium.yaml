@@ -37,26 +37,26 @@ spec:
           value: "1" # While we are not HA
         - name: "hubble.enabled"
           value: "true"
-        - name: "hubble.relay.enabled"
-          value: "true"
+        #- name: "hubble.relay.enabled"
+        #  value: "true"
         - name: "hubble.ui.enabled"
           value: "true"
-  #ignoreDifferences:
-  #  - jsonPointers: /data/ca.crt
-  #    kind: ConfigMap
-  #    name: hubble-ca-cert
-  #  - jsonPointers:
-  #      - /data/ca.crt
-  #      - /data/tls.crt
-  #      - /data/tls.key
-  #    kind: Secret
-  #    name: hubble-relay-client-certs
-  #  - jsonPointers:
-  #      - /data/ca.crt
-  #      - /data/tls.crt
-  #      - /data/tls.key
-  #    kind: Secret
-  #    name: hubble-server-certs
+  ignoreDifferences:
+    - jsonPointers: /data/ca.crt
+      kind: ConfigMap
+      name: hubble-ca-cert
+    - jsonPointers:
+        - /data/ca.crt
+        - /data/tls.crt
+        - /data/tls.key
+      kind: Secret
+      name: hubble-relay-client-certs
+    - jsonPointers:
+        - /data/ca.crt
+        - /data/tls.crt
+        - /data/tls.key
+      kind: Secret
+      name: hubble-server-certs
   destination:
     name: in-cluster
     namespace: kube-system
