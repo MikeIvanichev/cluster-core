@@ -35,6 +35,8 @@ spec:
           value: "7445"
         - name: "operator.replicas"
           value: "1" # While we are not HA
+        - name: "hubble.enabled"
+          value: "true"
   ignoreDifferences:
     - group: ""
       kind: ConfigMap
