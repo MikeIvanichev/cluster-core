@@ -42,7 +42,8 @@ spec:
         - name: "hubble.ui.enabled"
           value: "true"
   ignoreDifferences:
-    - jsonPointers: /data/ca.crt
+    - jsonPointers:
+        - /data/ca.crt
       kind: ConfigMap
       name: hubble-ca-cert
     - jsonPointers:
