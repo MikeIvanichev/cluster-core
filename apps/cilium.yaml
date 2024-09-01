@@ -42,19 +42,19 @@ spec:
         - name: "hubble.ui.enabled"
           value: "true"
   ignoreDifferences:
-    - group: "*"
+    - group: ""
       kind: ConfigMap
       name: hubble-ca-cert
       jsonPointers:
         - /data/ca.crt
-    - group: "*"
+    - group: ""
       kind: Secret
       name: hubble-relay-client-certs
       jsonPointers:
         - /data/ca.crt
         - /data/tls.crt
         - /data/tls.key
-    - group: "*"
+    - group: ""
       kind: Secret
       name: hubble-server-certs
       jsonPointers:
@@ -67,6 +67,5 @@ spec:
   syncPolicy:
     automated: {}
     syncOptions:
-      - ApplyOutOfSyncOnly=true
       - CreateNamespace=true
       - ServerSideApply=true
