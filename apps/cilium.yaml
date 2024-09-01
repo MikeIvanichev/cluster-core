@@ -67,5 +67,6 @@ spec:
   syncPolicy:
     automated: {}
     syncOptions:
+      - ApplyOutOfSyncOnly=true
       - CreateNamespace=true
       - ServerSideApply=true
