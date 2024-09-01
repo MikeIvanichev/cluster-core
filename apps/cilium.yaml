@@ -37,6 +37,10 @@ spec:
           value: "1" # While we are not HA
         - name: "hubble.enabled"
           value: "true"
+        - name: "hubble.relay.enabled"
+          value: "true"
+        - name: "hubble.ui.enabled"
+          value: "true"
   ignoreDifferences:
     - group: ""
       kind: ConfigMap
