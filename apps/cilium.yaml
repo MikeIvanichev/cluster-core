@@ -33,6 +33,8 @@ spec:
           value: localhost
         - name: k8sServicePort
           value: "7445"
+        - name: "operator.replicas"
+          value: "1" # While we are not HA
   ignoreDifferences:
     - group: ""
       kind: ConfigMap
