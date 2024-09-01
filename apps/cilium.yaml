@@ -42,22 +42,25 @@ spec:
         - name: "hubble.ui.enabled"
           value: "true"
   ignoreDifferences:
-    - jsonPointers:
-        - /data/ca.crt
+    - group: ""
       kind: ConfigMap
       name: hubble-ca-cert
-    - jsonPointers:
+      jsonPointers:
         - /data/ca.crt
-        - /data/tls.crt
-        - /data/tls.key
+    - group: ""
       kind: Secret
       name: hubble-relay-client-certs
-    - jsonPointers:
+      jsonPointers:
         - /data/ca.crt
         - /data/tls.crt
         - /data/tls.key
+    - group: ""
       kind: Secret
       name: hubble-server-certs
+      jsonPointers:
+        - /data/ca.crt
+        - /data/tls.crt
+        - /data/tls.key
   destination:
     name: in-cluster
     namespace: kube-system
