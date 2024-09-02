@@ -53,9 +53,13 @@ spec:
               method: cronJob
               certValidityDuration: 1095
               schedule: "0 0 1 */4 *"
+            server:
+              enabled: true
           relay:
             enabled: true
           ui:
+            enabled: true
+          metrics:
             enabled: true
   ignoreDifferences:
     - group: ""
