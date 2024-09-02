@@ -46,11 +46,11 @@ spec:
           autoMount:
             enabled: false
         hubble:
-          enabled: false
+          enabled: true
           relay:
-            enabled: false
+            enabled: true
           ui:
-            enabled: false
+            enabled: true
   ignoreDifferences:
     - group: ""
       kind: ConfigMap
