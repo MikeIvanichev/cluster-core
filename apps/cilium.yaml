@@ -14,7 +14,7 @@ spec:
     helm:
       valuesObject:
         installCRDs: true
-        kubeProxyReplacement: true
+        kubeProxyReplacement: false
         k8sServiceHost: localhost
         k8sServicePort: 7445
         operator:
