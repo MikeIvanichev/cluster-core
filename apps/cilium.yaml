@@ -50,16 +50,7 @@ spec:
         hubble:
           enabled: true
           tls:
-            auto:
-              enabled: true
-              method: certmanager
-              certValidityDuration: 1095
-              certManagerIssuerRef:
-                group: "cert-manager.io"
-                kind: ClusterIssuer
-                name: ca-issuer
-            server:
-              enabled: true
+            enabled: false
           relay:
             enabled: true
           ui:
