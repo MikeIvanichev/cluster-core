@@ -1,5 +1,5 @@
-apiversion: argoproj.io/v1alpha1
-kind: application
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
   name: istio
   namespace: argocd
@@ -8,12 +8,16 @@ metadata:
 spec:
   project: default
   source:
-    repourl: "https://github.com/mikeivanichev/cluster-core"
-    targetrevision: HEAD
-    path: apps/istio/
+    repoURL: "https://github.com/MikeIvanichev/cluster-core.git"
+    targetRevision: HEAD
+    path: app-definitions/istio/
   destination:
     name: in-cluster
+    namespace: argocd
   syncPolicy:
-    automated: {}
+    automated:
+      prune: true
+      selfHeal: true
     syncOptions:
+      - CreateNamespace=true
       - ApplyOutOfSyncOnly=true
