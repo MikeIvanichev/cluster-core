@@ -12,49 +12,45 @@ spec:
     chart: cilium
     targetRevision: "v1.16.1"
     helm:
-      parameters:
-        - name: installCRDs
-          value: "true"
-        - name: "cluster.name"
-          value: core
-        - name: "ipam.mode"
-          value: kubernetes
-        - name: kubeProxyReplacement
-          value: "true"
-        - name: "securityContext.capabilities.ciliumAgent"
-          value: "{CHOWN,KILL,NET_ADMIN,NET_RAW,IPC_LOCK,SYS_ADMIN,SYS_RESOURCE,DAC_OVERRIDE,FOWNER,SETGID,SETUID}"
-        - name: "securityContext.capabilities.cleanCiliumState"
-          value: "{NET_ADMIN,SYS_ADMIN,SYS_RESOURCE}"
-        - name: "cgroup.autoMount.enabled"
-          value: "false"
-        - name: "cgroup.hostRoot"
-          value: "/sys/fs/cgroup"
-        - name: k8sServiceHost
-          value: localhost
-        - name: k8sServicePort
-          value: "7445"
-        - name: "operator.replicas"
-          value: "1" # While we are not HA
-        - name: "hubble.enabled"
-          value: "true"
-        - name: "hubble.relay.enabled"
-          value: "true"
-        - name: "hubble.ui.enabled"
-          value: "true"
+      valuesObject:
+        installCRDs: "true"
+        kubeProxyReplacement: "true"
+        k8sServiceHost: localhost
+        k8sServicePort: "7445"
+        operator:
+          replicas: "1"
+        cluster:
+          name: core
+        ipam:
+          mode: kubernetes
+        securityContext:
+          capabilities:
+            ciliumAgent: "{CHOWN,KILL,NET_ADMIN,NET_RAW,IPC_LOCK,SYS_ADMIN,SYS_RESOURCE,DAC_OVERRIDE,FOWNER,SETGID,SETUID}"
+            cleanCiliumState: "{NET_ADMIN,SYS_ADMIN,SYS_RESOURCE}"
+        cgroup:
+          hostRoot: "/sys/fs/cgroup"
+          autoMount:
+            enabled: "false"
+        hubble:
+          enabled: "true"
+          relay:
+            enabled: "true"
+          ui:
+            enabled: "true"
   ignoreDifferences:
-    - group: "*"
+    - group: ""
       kind: ConfigMap
       name: hubble-ca-cert
       jsonPointers:
         - /data/ca.crt
-    - group: "*"
+    - group: ""
       kind: Secret
       name: hubble-relay-client-certs
       jsonPointers:
         - /data/ca.crt
         - /data/tls.crt
         - /data/tls.key
-    - group: "*"
+    - group: ""
       kind: Secret
       name: hubble-server-certs
       jsonPointers:
