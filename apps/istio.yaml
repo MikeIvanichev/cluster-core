@@ -3,14 +3,12 @@ kind: application
 metadata:
   name: istio
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repourl: "https://github.com/mikeivanichev/cluster-core"
     targetrevision: HEAD
-    path: "apps/istio"
+    path: apps/istio/
   destination:
     name: in-cluster
   syncPolicy:
