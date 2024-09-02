@@ -13,7 +13,6 @@ spec:
     path: app-definitions/istio/
   destination:
     name: in-cluster
-    namespace: argocd
   syncPolicy:
     automated:
       prune: true
