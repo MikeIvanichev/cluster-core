@@ -2,6 +2,7 @@ apiversion: argoproj.io/v1alpha1
 kind: application
 metadata:
   name: cluster-core
+  namespace: argocd
 spec:
   project: default
   source:
