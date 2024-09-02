@@ -1,14 +1,16 @@
 apiversion: argoproj.io/v1alpha1
 kind: application
 metadata:
-  name: cluster-core
+  name: istio
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repourl: "https://github.com/mikeivanichev/cluster-core"
     targetrevision: HEAD
-    path: apps
+    path: apps/istio
   destination:
     name: in-cluster
   syncPolicy:
