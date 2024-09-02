@@ -14,11 +14,13 @@ spec:
     helm:
       valuesObject:
         installCRDs: true
-        kubeProxyReplacement: false
+        kubeProxyReplacement: strict
         k8sServiceHost: localhost
         k8sServicePort: 7445
         operator:
           replicas: 1
+        socketLB:
+          hostNamespaceOnly: true
         cluster:
           name: core
         ipam:
