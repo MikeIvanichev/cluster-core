@@ -13,16 +13,16 @@ spec:
   source:
     chart: base
     repoURL: "https://istio-release.storage.googleapis.com/charts"
-    targetRevision: "v1.23.0"
+    targetRevision: "1.23.0"
+  ignoreDifferences:
+    - group: admissionregistration.k8s.io
+      kind: ValidatingWebhookConfiguration
+      jsonPointers:
+        - /webhooks/0/failurePolicy
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      - ApplyOutOfSyncOnly=true
-  ignoreDifferences:
-    - group: admissionregistration.k8s.io
-      kind: ValidatingWebhookConfiguration
-      jsonPointers:
-        - /webhooks/0/failurePolicy
+        - ApplyOutOfSyncOnly=true
