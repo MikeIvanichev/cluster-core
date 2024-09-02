@@ -2,9 +2,6 @@ apiversion: argoproj.io/v1alpha1
 kind: application
 metadata:
   name: istio
-  namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
