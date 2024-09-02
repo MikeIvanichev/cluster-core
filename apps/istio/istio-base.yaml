@@ -6,10 +6,10 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
+  project: default
   destination:
     name: in-cluster
     namespace: istio-system
-  project: default
   source:
     chart: base
     repoURL: https://istio-release.storage.googleapis.com/charts
