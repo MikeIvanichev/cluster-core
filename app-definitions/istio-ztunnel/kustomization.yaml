@@ -3,7 +3,7 @@ kind: Kustomization
 
 helmCharts:
   - name: ztunnel
-  - repo: https://istio-release.storage.googleapis.com/charts
-  - releaseName: ztunnel
-  - namespace: istio-system
-  - version: "1.23.0"
+    repo: https://istio-release.storage.googleapis.com/charts
+    releaseName: ztunnel
+    namespace: istio-system
+    version: "1.23.0"
