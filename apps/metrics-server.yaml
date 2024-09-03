@@ -17,6 +17,8 @@ spec:
     helm:
       valuesObject:
         replicas: 1
+        args:
+          - "--kubelet-insecure-tls"
   syncPolicy:
     automated:
       prune: true
