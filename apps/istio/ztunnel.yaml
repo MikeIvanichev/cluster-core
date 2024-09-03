@@ -11,9 +11,9 @@ spec:
     namespace: istio-system
   project: default
   source:
-    chart: ztunnel
-    repoURL: https://istio-release.storage.googleapis.com/charts
-    targetRevision: "1.23.0"
+    repoURL: "https://github.com/MikeIvanichev/cluster-core.git"
+    targetRevision: HEAD
+    path: app-definitions/istio-ztunnel/
   syncPolicy:
     automated:
       prune: true
