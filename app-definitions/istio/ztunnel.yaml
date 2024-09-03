@@ -18,8 +18,7 @@ spec:
       valuesObject:
         securityContext:
           capabilities:
-            add:
-              - NET_ADMIN
+            - NET_ADMIN
   syncPolicy:
     automated:
       prune: true
