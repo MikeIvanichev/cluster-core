@@ -17,7 +17,8 @@ spec:
     helm:
       valuesObject:
         resources:
-          requests:
+          requests: # Cut the requests by 4
+            cpu: 50m
             memory: 128Mi
   syncPolicy:
     automated:
