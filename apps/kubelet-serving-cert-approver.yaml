@@ -15,8 +15,7 @@ spec:
     targetRevision: "e41795fb0cebb5aed2a20bc3e53294c485524505"
     path: deploy
     directory:
-      include:
-        - "standalone-install.yaml"
+      include: "standalone-install.yaml"
   syncPolicy:
     automated:
       prune: true
