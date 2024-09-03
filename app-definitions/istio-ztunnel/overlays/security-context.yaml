@@ -7,13 +7,12 @@ spec:
   template:
     spec:
       containers:
-        - name: istio-proxy
+        - name: ztunnel
           securityContext:
             capabilities:
-              add:
-                - NET_ADMIN
-                - NET_RAW
-                - SYS_ADMIN
+              - NET_ADMIN
+              - NET_RAW
+              - SYS_ADMIN
       volumes:
         - name: cni-ztunnel-sock-dir
           hostPath:
