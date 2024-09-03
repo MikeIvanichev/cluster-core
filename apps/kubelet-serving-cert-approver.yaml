@@ -9,17 +9,15 @@ spec:
   project: default
   destination:
     name: in-cluster
-    namespace: kube-system
+    namespace: kubelet-serving-cert-approver
   source:
-    chart: metrics-server
-    repoURL: "https://kubernetes-sigs.github.io/metrics-server/"
-    targetRevision: "3.12.1"
-    helm:
-      valuesObject:
-        replicas: 1
+    repoURL: "https://github.com/alex1989hu/kubelet-serving-cert-approver.git"
+    path: deploy/standalone-install.yaml
+    targetRevision: "e41795fb0cebb5aed2a20bc3e53294c485524505"
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
+      - CreateNamespace=true
       - ApplyOutOfSyncOnly=true
