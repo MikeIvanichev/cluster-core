@@ -12,7 +12,7 @@ spec:
     namespace: kubelet-serving-cert-approver
   source:
     repoURL: "https://github.com/alex1989hu/kubelet-serving-cert-approver.git"
-    targetRevision: "e41795fb0cebb5aed2a20bc3e53294c485524505"
+    targetRevision: "385fd8001583276444ed0131d9ba5b85da0d5ca3"
     path: deploy
     directory:
       include: "standalone-install.yaml"
