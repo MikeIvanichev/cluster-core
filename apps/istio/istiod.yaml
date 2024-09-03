@@ -17,9 +17,10 @@ spec:
     helm:
       valuesObject:
         profile: ambient
-        resources:
-          requests:
-            memory: 512Mi
+        global:
+          defaultResources:
+            requests:
+              memory: 512Mi
   ignoreDifferences:
     - group: admissionregistration.k8s.io
       kind: ValidatingWebhookConfiguration
