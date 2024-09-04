@@ -12,11 +12,11 @@ spec:
     chart: cert-manager
     targetRevision: "v1.15.3"
     helm:
-      valuesObject:
-        parameters:
-          - name: installCRDs
-            value: "true"
+      parameters:
+        - name: installCRDs
+          value: "true"
 
+      valuesObject:
         # Helm chart values which make cert-manager comply with CIS, BSI and NSA
         # security benchmarks and other best practices for deploying cert-manager in
         # production.
