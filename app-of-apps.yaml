@@ -13,7 +13,6 @@ spec:
     path: apps
     directory:
       recurse: true
-      exclude: "istio/*"
   destination:
     name: in-cluster
     namespace: argocd
