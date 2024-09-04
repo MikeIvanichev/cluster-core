@@ -27,6 +27,7 @@ spec:
           name: core
         ipam:
           mode: kubernetes
+
         securityContext:
           capabilities:
             ciliumAgent:
@@ -45,14 +46,24 @@ spec:
               - NET_ADMIN
               - SYS_ADMIN
               - SYS_RESOURCE
+
         cgroup:
           hostRoot: /sys/fs/cgroup
           autoMount:
             enabled: false
+
         hubble:
           enabled: true
           tls:
-            enabled: false
+            enabled: true
+            auto:
+              enabled: true
+              method: certmanager
+              certValidityDuration: 1095
+              certManagerIssuerRef:
+                group: cert-manager.io
+                kind: ClusterIssuer
+                name: hubble-ca-issuer
           relay:
             enabled: true
           ui:
@@ -66,6 +77,7 @@ spec:
               - port-distribution
               - icmp
               - httpV2:exemplars=true;labelsContext=source_ip,source_namespace,source_workload,destination_ip,destination_namespace,destination_workload,traffic_direction
+
   ignoreDifferences:
     - jsonPointers:
         - /data/ca.crt
