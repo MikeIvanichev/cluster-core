@@ -12,85 +12,20 @@ spec:
     chart: cert-manager
     targetRevision: "v1.15.3"
     helm:
-      parameters:
-        - name: installCRDs
-          value: "true"
-      # Helm chart values which make cert-manager comply with CIS, BSI and NSA
-      # security benchmarks and other best practices for deploying cert-manager in
-      # production.
-      #
-      # Read the rationale for these values in:
-      # * https://cert-manager.io/docs/installation/best-practice/
-      global:
-        priorityClassName: system-cluster-critical
+      valuesObject:
+        parameters:
+          - name: installCRDs
+            value: "true"
 
-      replicaCount: 2
-      podDisruptionBudget:
-        enabled: true
-        minAvailable: 1
-      automountServiceAccountToken: false
-      serviceAccount:
-        automountServiceAccountToken: false
-      volumes:
-        - name: serviceaccount-token
-          projected:
-            defaultMode: 0444
-            sources:
-              - serviceAccountToken:
-                  expirationSeconds: 3607
-                  path: token
-              - configMap:
-                  name: kube-root-ca.crt
-                  items:
-                    - key: ca.crt
-                      path: ca.crt
-              - downwardAPI:
-                  items:
-                    - path: namespace
-                      fieldRef:
-                        apiVersion: v1
-                        fieldPath: metadata.namespace
-      volumeMounts:
-        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-          name: serviceaccount-token
-          readOnly: true
+        # Helm chart values which make cert-manager comply with CIS, BSI and NSA
+        # security benchmarks and other best practices for deploying cert-manager in
+        # production.
+        #
+        # Read the rationale for these values in:
+        # * https://cert-manager.io/docs/installation/best-practice/
+        global:
+          priorityClassName: system-cluster-critical
 
-      webhook:
-        replicaCount: 3
-        podDisruptionBudget:
-          enabled: true
-          minAvailable: 1
-        automountServiceAccountToken: false
-        serviceAccount:
-          automountServiceAccountToken: false
-        volumes:
-          - name: serviceaccount-token
-            projected:
-              defaultMode: 0444
-              sources:
-                - serviceAccountToken:
-                    expirationSeconds: 3607
-                    path: token
-                - configMap:
-                    name: kube-root-ca.crt
-                    items:
-                      - key: ca.crt
-                        path: ca.crt
-                - downwardAPI:
-                    items:
-                      - path: namespace
-                        fieldRef:
-                          apiVersion: v1
-                          fieldPath: metadata.namespace
-        volumeMounts:
-          - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-            name: serviceaccount-token
-            readOnly: true
-
-      cainjector:
-        extraArgs:
-          - --namespace=cert-manager
-          - --enable-certificates-data-source=false
         replicaCount: 2
         podDisruptionBudget:
           enabled: true
@@ -122,33 +57,100 @@ spec:
             name: serviceaccount-token
             readOnly: true
 
-      startupapicheck:
-        automountServiceAccountToken: false
-        serviceAccount:
+        webhook:
+          replicaCount: 3
+          podDisruptionBudget:
+            enabled: true
+            minAvailable: 1
           automountServiceAccountToken: false
-        volumes:
-          - name: serviceaccount-token
-            projected:
-              defaultMode: 0444
-              sources:
-                - serviceAccountToken:
-                    expirationSeconds: 3607
-                    path: token
-                - configMap:
-                    name: kube-root-ca.crt
-                    items:
-                      - key: ca.crt
-                        path: ca.crt
-                - downwardAPI:
-                    items:
-                      - path: namespace
-                        fieldRef:
-                          apiVersion: v1
-                          fieldPath: metadata.namespace
-        volumeMounts:
-          - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-            name: serviceaccount-token
-            readOnly: true
+          serviceAccount:
+            automountServiceAccountToken: false
+          volumes:
+            - name: serviceaccount-token
+              projected:
+                defaultMode: 0444
+                sources:
+                  - serviceAccountToken:
+                      expirationSeconds: 3607
+                      path: token
+                  - configMap:
+                      name: kube-root-ca.crt
+                      items:
+                        - key: ca.crt
+                          path: ca.crt
+                  - downwardAPI:
+                      items:
+                        - path: namespace
+                          fieldRef:
+                            apiVersion: v1
+                            fieldPath: metadata.namespace
+          volumeMounts:
+            - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+              name: serviceaccount-token
+              readOnly: true
+
+        cainjector:
+          extraArgs:
+            - --namespace=cert-manager
+            - --enable-certificates-data-source=false
+          replicaCount: 2
+          podDisruptionBudget:
+            enabled: true
+            minAvailable: 1
+          automountServiceAccountToken: false
+          serviceAccount:
+            automountServiceAccountToken: false
+          volumes:
+            - name: serviceaccount-token
+              projected:
+                defaultMode: 0444
+                sources:
+                  - serviceAccountToken:
+                      expirationSeconds: 3607
+                      path: token
+                  - configMap:
+                      name: kube-root-ca.crt
+                      items:
+                        - key: ca.crt
+                          path: ca.crt
+                  - downwardAPI:
+                      items:
+                        - path: namespace
+                          fieldRef:
+                            apiVersion: v1
+                            fieldPath: metadata.namespace
+          volumeMounts:
+            - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+              name: serviceaccount-token
+              readOnly: true
+
+        startupapicheck:
+          automountServiceAccountToken: false
+          serviceAccount:
+            automountServiceAccountToken: false
+          volumes:
+            - name: serviceaccount-token
+              projected:
+                defaultMode: 0444
+                sources:
+                  - serviceAccountToken:
+                      expirationSeconds: 3607
+                      path: token
+                  - configMap:
+                      name: kube-root-ca.crt
+                      items:
+                        - key: ca.crt
+                          path: ca.crt
+                  - downwardAPI:
+                      items:
+                        - path: namespace
+                          fieldRef:
+                            apiVersion: v1
+                            fieldPath: metadata.namespace
+          volumeMounts:
+            - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+              name: serviceaccount-token
+              readOnly: true
   destination:
     name: in-cluster
     namespace: cert-manager
