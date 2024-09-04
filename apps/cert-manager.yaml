@@ -12,6 +12,11 @@ spec:
     chart: cert-manager
     targetRevision: "v1.15.3"
     helm:
+      replicaCount: 1
+      webhook:
+        replicaCount: 1
+      cainjector:
+        replicaCount: 1
       parameters:
         - name: installCRDs
           value: "true"
