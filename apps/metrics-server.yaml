@@ -12,7 +12,7 @@ spec:
     namespace: kube-system
   source:
     chart: metrics-server
-    repoURL: "https://kubernetes-sigs.github.io/metrics-server/"
+    repoURL: https://kubernetes-sigs.github.io/metrics-server/
     targetRevision: "3.12.1"
     helm:
       valuesObject:

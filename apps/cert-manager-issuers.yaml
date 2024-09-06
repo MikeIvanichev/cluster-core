@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: "https://github.com/MikeIvanichev/cluster-core.git"
+    repoURL: https://github.com/MikeIvanichev/cluster-core.git
     targetRevision: HEAD
     path: app-definitions/cert-manager-issuers/
   destination:

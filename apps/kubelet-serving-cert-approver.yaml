@@ -11,11 +11,11 @@ spec:
     name: in-cluster
     namespace: kubelet-serving-cert-approver
   source:
-    repoURL: "https://github.com/alex1989hu/kubelet-serving-cert-approver.git"
-    targetRevision: "385fd8001583276444ed0131d9ba5b85da0d5ca3"
+    repoURL: https://github.com/alex1989hu/kubelet-serving-cert-approver.git
+    targetRevision: 385fd8001583276444ed0131d9ba5b85da0d5ca3
     path: deploy
     directory:
-      include: "standalone-install.yaml"
+      include: standalone-install.yaml
   syncPolicy:
     automated:
       prune: true
