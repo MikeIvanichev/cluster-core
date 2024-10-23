@@ -8,8 +8,8 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: "https://github.com/mikeivanichev/cluster-core"  # Correct field name
-    targetRevision: HEAD  # Correct field name
+    repoURL: "https://github.com/mikeivanichev/cluster-core"
+    targetRevision: HEAD
     path: apps
     directory:
       recurse: true
