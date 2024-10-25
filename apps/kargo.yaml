@@ -11,7 +11,7 @@ spec:
     name: in-cluster
     namespace: kargo
   source:
-    repoURL: ghcr.io/akuity/kargo-charts/kargo
+    repoURL: ghcr.io/akuity/kargo-charts
     chart: kargo
     targetRevision: "1.0.2"
     helm:
