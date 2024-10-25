@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kargo
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  destination:
+    name: in-cluster
+    namespace: kargo
+  source:
+    repoURL: oci://ghcr.io/akuity/kargo-charts/kargo
+    chart: kargo
+    targetRevision: "1.0.2"
+    helm:
+      parameters:
+        api:
+          adminAccount:
+            passwordHash: "$2a$10$KGwAFA3lbtFEfa8stWxZd.NQDfSXmgfCEuCeEsIoA9yaoVrwEVqMm"
+            tokenSigningKey: "sZm8P8RAcf43jwtTvVMZUEtUfe2ZVJZoGoZheUyxxCVCRbwBki"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
