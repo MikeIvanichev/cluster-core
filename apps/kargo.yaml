@@ -16,6 +16,10 @@ spec:
     targetRevision: "1.0.2"
     helm:
       parameters:
+        - name: installCRDs
+          value: "true"
+
+      valuesObject:
         api:
           adminAccount:
             passwordHash: "$2a$10$KGwAFA3lbtFEfa8stWxZd.NQDfSXmgfCEuCeEsIoA9yaoVrwEVqMm"
