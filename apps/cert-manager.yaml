@@ -90,8 +90,6 @@ spec:
               readOnly: true
 
         cainjector:
-          extraArgs:
-            - --enable-certificates-data-source=false
           replicaCount: 1 # Dropped to 1 from 2
           podDisruptionBudget:
             enabled: true
