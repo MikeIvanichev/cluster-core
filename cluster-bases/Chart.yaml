@@ -1,35 +1,29 @@
 apiVersion: v2
 name: cluster-base
-version: 0.0.1
+version: 0.0.2
 type: application
 
 dependencies:
   - name: cert-manager
-    version: "v1.16.0"
     repository: https://charts.jetstack.io/
 
   - name: cilium
-    version: "v1.16.3"
     repository: https://helm.cilium.io/
 
   - name: base
-    version: "1.23.0"
     repository: https://istio-release.storage.googleapis.com/charts
     alias: istio-base
     condition: istio.enabled
 
   - name: cni
-    version: "1.23.0"
     repository: https://istio-release.storage.googleapis.com/charts
     alias: istio-cni
     condition: istio.enabled
 
   - name: istiod
-    version: "1.23.0"
     repository: https://istio-release.storage.googleapis.com/charts
     condition: istio.enabled
 
   - name: ztunnel
-    version: "1.23.0"
     repository: https://istio-release.storage.googleapis.com/charts
     condition: istio.enabled
