@@ -135,7 +135,7 @@ cert-manager:
         readOnly: true
 
 cilium:
-  kubeProxyReplacement: strict
+  kubeProxyReplacement: true
   operator:
     replicas: 1
   ipam:
