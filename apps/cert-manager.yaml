@@ -91,7 +91,6 @@ spec:
 
         cainjector:
           extraArgs:
-            - --namespace=cert-manager
             - --enable-certificates-data-source=false
           replicaCount: 1 # Dropped to 1 from 2
           podDisruptionBudget:
