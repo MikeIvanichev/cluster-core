@@ -1,0 +1,4 @@
+cert-manager:
+  replicaCount: 2
+  webhook.replicaCount: 3
+  cainjector.replicaCount: 2
