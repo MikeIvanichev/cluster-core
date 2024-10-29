@@ -1,7 +1,8 @@
 apiVersion: v2
-name: cluster-config
+name: cluster-base
 version: 0.0.1
 type: application
+
 dependencies:
   - name: cert-manager
     version: "v1.16.0"
