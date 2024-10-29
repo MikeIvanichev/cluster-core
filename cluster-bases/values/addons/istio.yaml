@@ -6,19 +6,3 @@ cilium:
 
 istio:
   enabled: true
-  istio-cni:
-    profile: ambient
-
-  istiod:
-    profile: ambient
-    pilot:
-      resources:
-        requests:
-          cpu: 125m
-          memory: 512Mi
-
-  ztunnel:
-    resources:
-      requests:
-        cpu: 50m
-        memory: 128Mi
