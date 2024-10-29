@@ -1,0 +1,95 @@
+---
+# Source: cluster-base/charts/cert-manager/templates/cainjector-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cluster-base-cert-manager-cainjector
+  namespace: cluster-core
+  labels:
+    app: cainjector
+    app.kubernetes.io/name: cainjector
+    app.kubernetes.io/instance: cluster-base
+    app.kubernetes.io/component: "cainjector"
+    app.kubernetes.io/version: "v1.16.1"
+    app.kubernetes.io/managed-by: Helm
+    helm.sh/chart: cert-manager-v1.16.1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: cainjector
+      app.kubernetes.io/instance: cluster-base
+      app.kubernetes.io/component: "cainjector"
+  template:
+    metadata:
+      labels:
+        app: cainjector
+        app.kubernetes.io/name: cainjector
+        app.kubernetes.io/instance: cluster-base
+        app.kubernetes.io/component: "cainjector"
+        app.kubernetes.io/version: "v1.16.1"
+        app.kubernetes.io/managed-by: Helm
+        helm.sh/chart: cert-manager-v1.16.1
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/scrape: 'true'
+        prometheus.io/port: '9402'
+    spec:
+      serviceAccountName: cluster-base-cert-manager-cainjector
+      automountServiceAccountToken: false
+      enableServiceLinks: false
+      priorityClassName: "system-cluster-critical"
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: cert-manager-cainjector
+          image: "quay.io/jetstack/cert-manager-cainjector:v1.16.1"
+          imagePullPolicy: IfNotPresent
+          args:
+          - --v=2
+          - --leader-election-namespace=kube-system
+          - --namespace=cert-manager
+          - --enable-certificates-data-source=false
+          ports:
+          - containerPort: 9402
+            name: http-metrics
+            protocol: TCP
+          env:
+          - name: POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            readOnlyRootFilesystem: true
+          volumeMounts:
+            - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+              name: serviceaccount-token
+              readOnly: true
+      nodeSelector:
+        kubernetes.io/os: linux
+      volumes:
+        
+        - name: serviceaccount-token
+          projected:
+            defaultMode: 292
+            sources:
+            - serviceAccountToken:
+                expirationSeconds: 3607
+                path: token
+            - configMap:
+                items:
+                - key: ca.crt
+                  path: ca.crt
+                name: kube-root-ca.crt
+            - downwardAPI:
+                items:
+                - fieldRef:
+                    apiVersion: v1
+                    fieldPath: metadata.namespace
+                  path: namespace

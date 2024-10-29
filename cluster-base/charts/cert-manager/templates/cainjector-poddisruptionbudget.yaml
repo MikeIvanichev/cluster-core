@@ -1,0 +1,22 @@
+---
+# Source: cluster-base/charts/cert-manager/templates/cainjector-poddisruptionbudget.yaml
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: cluster-base-cert-manager-cainjector
+  namespace: cluster-core
+  labels:
+    app: cainjector
+    app.kubernetes.io/name: cainjector
+    app.kubernetes.io/instance: cluster-base
+    app.kubernetes.io/component: "cainjector"
+    app.kubernetes.io/version: "v1.16.1"
+    app.kubernetes.io/managed-by: Helm
+    helm.sh/chart: cert-manager-v1.16.1
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: cainjector
+      app.kubernetes.io/instance: cluster-base
+      app.kubernetes.io/component: "cainjector"
+  minAvailable: 1
