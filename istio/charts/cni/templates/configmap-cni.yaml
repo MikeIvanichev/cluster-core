@@ -1,0 +1,33 @@
+---
+# Source: istio/charts/cni/templates/configmap-cni.yaml
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: istio-cni-config
+  namespace: cluster-core
+  labels:
+    app: istio-cni
+    release: istio
+    istio.io/rev: default
+    install.operator.istio.io/owning-resource: unknown
+    operator.istio.io/component: "Cni"
+    app.kubernetes.io/name: istio-cni
+    app.kubernetes.io/managed-by: "Helm"
+    app.kubernetes.io/instance: "istio"
+    app.kubernetes.io/part-of: "istio"
+    app.kubernetes.io/version: "1.24.0-alpha.0"
+    helm.sh/chart: cni-1.24.0-alpha.0
+data:
+  CURRENT_AGENT_VERSION: "1.24.0-alpha.0"
+  AMBIENT_ENABLED: "true"
+  AMBIENT_DNS_CAPTURE: "false"
+  AMBIENT_IPV6: "true"
+  CHAINED_CNI_PLUGIN: "true"
+  EXCLUDED_NAMESPACES: "kube-system"
+  REPAIR_ENABLED: "true"
+  REPAIR_LABEL_PODS: "false"
+  REPAIR_DELETE_PODS: "false"
+  REPAIR_REPAIR_PODS: "true"
+  REPAIR_INIT_CONTAINER_NAME: "istio-validation"
+  REPAIR_BROKEN_POD_LABEL_KEY: "cni.istio.io/uninitialized"
+  REPAIR_BROKEN_POD_LABEL_VALUE: "true"

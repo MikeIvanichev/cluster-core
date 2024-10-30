@@ -1,0 +1,78 @@
+---
+# Source: istio/charts/cni/templates/clusterrolebinding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: istio-cni
+  labels:
+    app: istio-cni
+    release: istio
+    istio.io/rev: default
+    install.operator.istio.io/owning-resource: unknown
+    operator.istio.io/component: "Cni"
+    app.kubernetes.io/name: istio-cni
+    app.kubernetes.io/managed-by: "Helm"
+    app.kubernetes.io/instance: "istio"
+    app.kubernetes.io/part-of: "istio"
+    app.kubernetes.io/version: "1.24.0-alpha.0"
+    helm.sh/chart: cni-1.24.0-alpha.0
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: istio-cni
+subjects:
+- kind: ServiceAccount
+  name: istio-cni
+  namespace: cluster-core
+---
+# Source: istio/charts/cni/templates/clusterrolebinding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: istio-cni-repair-rolebinding
+  labels:
+    k8s-app: istio-cni-repair
+    release: istio
+    istio.io/rev: default
+    install.operator.istio.io/owning-resource: unknown
+    operator.istio.io/component: "Cni"
+    app.kubernetes.io/name: istio-cni
+    app.kubernetes.io/managed-by: "Helm"
+    app.kubernetes.io/instance: "istio"
+    app.kubernetes.io/part-of: "istio"
+    app.kubernetes.io/version: "1.24.0-alpha.0"
+    helm.sh/chart: cni-1.24.0-alpha.0
+subjects:
+- kind: ServiceAccount
+  name: istio-cni
+  namespace: cluster-core
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: istio-cni-repair-role
+---
+# Source: istio/charts/cni/templates/clusterrolebinding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: istio-cni-ambient
+  labels:
+    k8s-app: istio-cni-repair
+    release: istio
+    istio.io/rev: default
+    install.operator.istio.io/owning-resource: unknown
+    operator.istio.io/component: "Cni"
+    app.kubernetes.io/name: istio-cni
+    app.kubernetes.io/managed-by: "Helm"
+    app.kubernetes.io/instance: "istio"
+    app.kubernetes.io/part-of: "istio"
+    app.kubernetes.io/version: "1.24.0-alpha.0"
+    helm.sh/chart: cni-1.24.0-alpha.0
+subjects:
+  - kind: ServiceAccount
+    name: istio-cni
+    namespace: cluster-core
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: istio-cni-ambient

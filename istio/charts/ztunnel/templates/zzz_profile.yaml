@@ -1,0 +1,3 @@
+---
+# Source: istio/charts/ztunnel/templates/zzz_profile.yaml
+#  Flatten globals, if defined on a per-chart basis

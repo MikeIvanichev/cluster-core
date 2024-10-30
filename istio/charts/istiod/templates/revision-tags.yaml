@@ -1,0 +1,7 @@
+---
+# Source: istio/charts/istiod/templates/revision-tags.yaml
+# Adapted from istio-discovery/templates/mutatingwebhook.yaml
+# Removed paths for legacy and default selectors since a revision tag
+# is inherently created from a specific revision
+# TODO BML istiodRemote.injectionURL is invalid to set if `istiodRemote.enabled` is false, we should express that.
+# Not created if istiod is running remotely

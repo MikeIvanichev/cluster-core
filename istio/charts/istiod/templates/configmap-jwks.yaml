@@ -1,0 +1,3 @@
+---
+# Source: istio/charts/istiod/templates/configmap-jwks.yaml
+# Not created if istiod is running remotely
