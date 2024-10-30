@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: cilium-agent
-        image: "quay.io/cilium/cilium:v1.17.0-pre.1@sha256:fa532628872a3b086d8658d93ff55e94035cb2a7d7f5f2411539eb51cceee617"
+        image: "quay.io/cilium/cilium:v1.16.3@sha256:62d2a09bbef840a46099ac4c69421c90f84f28d018d479749049011329aa7f28"
         imagePullPolicy: IfNotPresent
         command:
         - cilium-agent
@@ -183,9 +183,6 @@ spec:
           mountPath: /sys/fs/cgroup
         - name: cilium-run
           mountPath: /var/run/cilium
-        - name: cilium-netns
-          mountPath: /var/run/cilium/netns
-          mountPropagation: HostToContainer
         - name: etc-cni-netd
           mountPath: /host/etc/cni/net.d
         - name: clustermesh-secrets
@@ -204,7 +201,7 @@ spec:
           mountPath: /tmp
       initContainers:
       - name: config
-        image: "quay.io/cilium/cilium:v1.17.0-pre.1@sha256:fa532628872a3b086d8658d93ff55e94035cb2a7d7f5f2411539eb51cceee617"
+        image: "quay.io/cilium/cilium:v1.16.3@sha256:62d2a09bbef840a46099ac4c69421c90f84f28d018d479749049011329aa7f28"
         imagePullPolicy: IfNotPresent
         command:
         - cilium-dbg
@@ -229,7 +226,7 @@ spec:
           mountPath: /tmp
         terminationMessagePolicy: FallbackToLogsOnError
       - name: apply-sysctl-overwrites
-        image: "quay.io/cilium/cilium:v1.17.0-pre.1@sha256:fa532628872a3b086d8658d93ff55e94035cb2a7d7f5f2411539eb51cceee617"
+        image: "quay.io/cilium/cilium:v1.16.3@sha256:62d2a09bbef840a46099ac4c69421c90f84f28d018d479749049011329aa7f28"
         imagePullPolicy: IfNotPresent
         env:
         - name: BIN_PATH
@@ -267,7 +264,7 @@ spec:
       # from a privileged container because the mount propagation bidirectional
       # only works from privileged containers.
       - name: mount-bpf-fs
-        image: "quay.io/cilium/cilium:v1.17.0-pre.1@sha256:fa532628872a3b086d8658d93ff55e94035cb2a7d7f5f2411539eb51cceee617"
+        image: "quay.io/cilium/cilium:v1.16.3@sha256:62d2a09bbef840a46099ac4c69421c90f84f28d018d479749049011329aa7f28"
         imagePullPolicy: IfNotPresent
         args:
         - 'mount | grep "/sys/fs/bpf type bpf" || mount -t bpf bpf /sys/fs/bpf'
@@ -283,7 +280,7 @@ spec:
           mountPath: /sys/fs/bpf
           mountPropagation: Bidirectional
       - name: clean-cilium-state
-        image: "quay.io/cilium/cilium:v1.17.0-pre.1@sha256:fa532628872a3b086d8658d93ff55e94035cb2a7d7f5f2411539eb51cceee617"
+        image: "quay.io/cilium/cilium:v1.16.3@sha256:62d2a09bbef840a46099ac4c69421c90f84f28d018d479749049011329aa7f28"
         imagePullPolicy: IfNotPresent
         command:
         - /init-container.sh
@@ -333,7 +330,7 @@ spec:
           mountPath: /var/run/cilium # wait-for-kube-proxy
       # Install the CNI binaries in an InitContainer so we don't have a writable host mount in the agent
       - name: install-cni-binaries
-        image: "quay.io/cilium/cilium:v1.17.0-pre.1@sha256:fa532628872a3b086d8658d93ff55e94035cb2a7d7f5f2411539eb51cceee617"
+        image: "quay.io/cilium/cilium:v1.16.3@sha256:62d2a09bbef840a46099ac4c69421c90f84f28d018d479749049011329aa7f28"
         imagePullPolicy: IfNotPresent
         command:
           - "/install-plugin.sh"
@@ -377,11 +374,6 @@ spec:
       - name: cilium-run
         hostPath:
           path: /var/run/cilium
-          type: DirectoryOrCreate
-        # To exec into pod network namespaces
-      - name: cilium-netns
-        hostPath:
-          path: /var/run/netns
           type: DirectoryOrCreate
         # To keep state between restarts / upgrades for bpf maps
       - name: bpf-maps
