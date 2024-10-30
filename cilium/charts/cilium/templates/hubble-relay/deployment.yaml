@@ -37,7 +37,7 @@ spec:
             runAsGroup: 65532
             runAsNonRoot: true
             runAsUser: 65532
-          image: "quay.io/cilium/hubble-relay:v1.16.3@sha256:feb60efd767e0e7863a94689f4a8db56a0acc7c1d2b307dee66422e3dc25a089"
+          image: "quay.io/cilium/hubble-relay:v1.17.0-pre.1@sha256:0f6450f567e998768f042894602a7a44f7146133c34cc2cbd5f5850effcef44a"
           imagePullPolicy: IfNotPresent
           command:
             - hubble-relay
