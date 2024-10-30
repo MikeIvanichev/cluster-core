@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
       - name: cilium-envoy
-        image: "quay.io/cilium/cilium-envoy:v1.29.9-1728346947-0d05e48bfbb8c4737ec40d5781d970a550ed2bbd@sha256:42614a44e508f70d03a04470df5f61e3cffd22462471a0be0544cf116f2c50ba"
+        image: "quay.io/cilium/cilium-envoy:v1.30.6-1727272964-5b1b38fcf3a622891ff40a9f1f1daa9e4eb1d795@sha256:b95adfb84570d99afa65fe78a3979ed2784a87862e90485b83fbc6b9d44560e2"
         imagePullPolicy: IfNotPresent
         command:
         - /usr/bin/cilium-envoy-starter

@@ -40,7 +40,7 @@ spec:
     spec:
       containers:
       - name: cilium-operator
-        image: "quay.io/cilium/operator-generic:v1.16.3@sha256:6e2925ef47a1c76e183c48f95d4ce0d34a1e5e848252f910476c3e11ce1ec94b"
+        image: "quay.io/cilium/operator-generic:v1.17.0-pre.1@sha256:5b8e56c73c292285370296d5b71266bbe11ee02c4977c1d299c313a09cb72d42"
         imagePullPolicy: IfNotPresent
         command:
         - cilium-operator-generic
