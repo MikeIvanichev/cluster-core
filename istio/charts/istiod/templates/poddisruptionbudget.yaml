@@ -1,0 +1,27 @@
+---
+# Source: istio/charts/istiod/templates/poddisruptionbudget.yaml
+# Not created if istiod is running remotely
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: istiod
+  namespace: cluster-core
+  labels:
+    app: istiod
+    istio.io/rev: "default"
+    install.operator.istio.io/owning-resource: unknown
+    operator.istio.io/component: "Pilot"
+    release: istio
+    istio: pilot
+    app.kubernetes.io/name: "istiod"
+    app.kubernetes.io/managed-by: "Helm"
+    app.kubernetes.io/instance: "istio"
+    app.kubernetes.io/part-of: "istio"
+    app.kubernetes.io/version: "1.24.0-alpha.0"
+    helm.sh/chart: istiod-1.24.0-alpha.0
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: istiod
+      istio: pilot

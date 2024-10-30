@@ -1,0 +1,23 @@
+---
+# Source: istio/charts/istiod/templates/reader-clusterrolebinding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: istio-reader-clusterrole-cluster-core
+  labels:
+    app: istio-reader
+    release: istio
+    app.kubernetes.io/name: "istio-reader"
+    app.kubernetes.io/managed-by: "Helm"
+    app.kubernetes.io/instance: "istio"
+    app.kubernetes.io/part-of: "istio"
+    app.kubernetes.io/version: "1.24.0-alpha.0"
+    helm.sh/chart: istiod-1.24.0-alpha.0
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: istio-reader-clusterrole-cluster-core
+subjects:
+  - kind: ServiceAccount
+    name: istio-reader-service-account
+    namespace: istio-system

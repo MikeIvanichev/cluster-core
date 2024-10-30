@@ -1,0 +1,3 @@
+---
+# Source: istio/charts/istiod/templates/validatingadmissionpolicy.yaml
+# Created if this is not a remote istiod, OR if it is and is also a config cluster
